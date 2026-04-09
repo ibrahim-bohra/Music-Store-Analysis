@@ -13,7 +13,6 @@ GROUP BY billing_country
 ORDER BY billing_country DESC;
 
 -- Q3. What are top 3 values of total invoice?
-
 SELECT *
 FROM invoice
 ORDER BY total DESC
@@ -27,7 +26,6 @@ FROM invoice
 GROUP BY billing_city
 ORDER BY total DESC
 LIMIT 1;
-
 -- Q5. Who is the best customer? The customer who has spent the most money will be declared the best customer. 
 --     Write a query that returns the person who has spent the most money.
 
@@ -50,10 +48,8 @@ WHERE track_id
 	    JOIN genre ON genre.genre_id = track.genre_id
 	    WHERE genre.name LIKE 'Rock')
 ORDER BY email;
-
 -- Q7. Let's invite the artists who have written the most rock music in our dataset. 
 --     Write a query that returns the Artist name and total track count of the top 10 rock bands.
-
 SELECT artist.artist_id, artist.name, COUNT(track.track_id) AS num_of_songs
 FROM artist
 JOIN album ON album.artist_id = artist.artist_id
@@ -99,11 +95,9 @@ JOIN album al ON al.album_id = t.album_id
 JOIN best_selling_artist bsa ON bsa.artist_id = al.artist_id
 GROUP BY 1, 2, 3
 ORDER BY 4 DESC;
-
 -- Q10. We want to find out the most popular music Genre for each country. 
 --      We determine the most popular genre as the genre with the highest amount of purchases. 
 --      Write a query that returns each country along with the top Genre. For countries where the maximum number of purchases is shared return all Genres.
-
 WITH popular_genre AS 
 	(SELECT COUNT(invoice_line.quantity) AS purchases, 
 	 	customer.country, genre.name AS genre_name,
